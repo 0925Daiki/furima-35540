@@ -1,24 +1,71 @@
-# README
+## users table
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column    | Type     | Options     |
+|-----------|----------|-------------|
+| name      | string   | null: false |
+| name-ruby | string   | null: false |
+| email     | string   | null: false |
+| password  | string   | null: false |
+| nickname  | string   | null: false |
+| birthday  | datetime | null: false |
 
-Things you may want to cover:
+## アソシエーション
+has_many :items
+has_many :user_items
+has_many :pays
 
-* Ruby version
 
-* System dependencies
+## items table
 
-* Configuration
+| Column          | Type          | Options                        |
+|-----------------|---------------|--------------------------------|
+| name            | string        | null: false                    |
+| price           | integer       | null: false                    |
+| image           | ActiveStorage | null: false                    |
+| description     | text          | null: false                    |
+| category        | string        | null: false                    |
+| status          | string        | null: false                    |
+| delivery-charge | string        | null: false                    |
+| shipping-area   | string        | null: false                    |
+| user            | references    | null: false, foreign_key: true |
 
-* Database creation
+## アソシエーション
+has_many :user
+has_many :user_items
+has_one :pays
 
-* Database initialization
+## user_items table
 
-* How to run the test suite
+| Column    | Type       | Options                        |
+|-----------|------------|--------------------------------|
+| user      | references | null: false, foreign_key: true |
+| items     | references | null: false, foreign_key: true |
 
-* Services (job queues, cache servers, search engines, etc.)
+## アソシエーション
+ belongs_to :user
+ belongs_to :items
 
-* Deployment instructions
+## pays table
 
-* ...
+| Column    | Type       | Options                        |
+|-----------|------------|--------------------------------|
+| user      | references | null: false, foreign_key: true |
+| items     | references | null: false, foreign_key: true |
+
+## アソシエーション
+belongs_to :user
+has_one :items
+has_one :sending
+
+## sending table
+
+| Column        | Type       | Options      |
+|---------------|------------|--------------|
+| postal-code   | integer    | null: false  |
+| prefectures   | string     | null: false  |
+| municipality  | string     | null: false  |
+| address       | integer    | null: false  |
+| building-name | string     | null: false  |
+| phone         | integer    | null: false  |
+
+has_one :pays
