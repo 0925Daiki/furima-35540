@@ -31,7 +31,7 @@ has_many :pays
 | user               | references    | null: false, foreign_key: true |
 
 ## アソシエーション
-has_many :users
+belongs_to :user
 has_one :pay
 
 
@@ -45,7 +45,7 @@ has_one :pay
 ## アソシエーション
 belongs_to :user
 has_one :item
-has_one :sends
+has_one :send
 
 ## sends table
 
