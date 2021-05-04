@@ -18,17 +18,17 @@ has_many :pays
 
 ## items table
 
-| Column          | Type          | Options                        |
-|-----------------|---------------|--------------------------------|
-| name            | string        | null: false                    |
-| price           | integer       | null: false                    |
-| description     | text          | null: false                    |
-| category_id        | integer        | null: false                    |
-| status_id          | integer        | null: false                    |
-| delivery_charge_id | integer        | null: false                    |
-| shipping_area_id   | integer        | null: false                    |
-| days_to_ship_id    | integer        | null: false                    |
-| user            | references    | null: false, foreign_key: true |
+| Column             | Type          | Options                        |
+|--------------------|---------------|--------------------------------|
+| name               | string        | null: false                    |
+| price              | integer       | null: false                    |
+| description        | text          | null: false                    |
+| category_id        | integer       | null: false                    |
+| status_id          | integer       | null: false                    |
+| delivery_charge_id | integer       | null: false                    |
+| shipping_area_id   | integer       | null: false                    |
+| days_to_ship_id    | integer       | null: false                    |
+| user               | references    | null: false, foreign_key: true |
 
 ## アソシエーション
 has_many :users
@@ -45,18 +45,18 @@ has_one :pay
 ## アソシエーション
 belongs_to :user
 has_one :item
-has_one :sending
+has_one :sends
 
 ## sends table
 
-| Column        | Type       | Options                        |
-|---------------|------------|--------------------------------|
-| postal_code   | string     | null: false                    |
-| prefectures   | string     | null: false                    |
-| municipality  | string     | null: false                    |
-| address       | string     | null: false                    |
-| building_name | string     |                                |
-| phone         | string     | null: false                    |
-| pay           | references | null: false, foreign_key: true |
+| Column         | Type       | Options                        |
+|----------------|------------|--------------------------------|
+| postal_code    | string     | null: false                    |
+| prefectures_id | integer    | null: false                    |
+| municipality   | string     | null: false                    |
+| address        | string     | null: false                    |
+| building_name  | string     |                                |
+| phone          | string     | null: false                    |
+| pay            | references | null: false, foreign_key: true |
 
 belongs_to :pay
