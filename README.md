@@ -44,7 +44,7 @@ has_one :pay
 
 ## アソシエーション
 belongs_to :user
-has_one :item
+belongs_to :item
 has_one :send
 
 ## sends table
