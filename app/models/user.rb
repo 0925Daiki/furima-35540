@@ -13,8 +13,8 @@ class User < ApplicationRecord
   end
 
   with_options presence: true, format: {with: /[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/} do
-    validates :last_name_ruby, presence: true
-    validates :first_name_ruby, presence: true
+    validates :last_name_ruby
+    validates :first_name_ruby
   end
 
   validates :nickname, presence: true
