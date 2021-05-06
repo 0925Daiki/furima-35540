@@ -33,35 +33,40 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
-      it 'priceが¥300~¥9,999,999での間でないと登録できない' do
-        @item.price = '100'
+      it 'priceが¥300以下では登録できない' do
+        @item.price = 100
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than 300")
       end
-      it 'categoryが「---」では登録できない' do
-        @item.category_id = '---'
+      it 'priceが¥9,999,999以上では登録できない' do
+        @item.price = 10000000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category is not a number")
+        expect(@item.errors.full_messages).to include("Price must be less than 9999999")
+      end
+      it 'categoryが「---」では登録できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
       it 'statusが「---」では登録できない' do
-        @item.status_id = '---'
+        @item.status_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status is not a number")
+        expect(@item.errors.full_messages).to include("Status must be other than 1")
       end
       it 'delivery_chargeが「---」では登録できない' do
-        @item.delivery_charge_id = '---'
+        @item.delivery_charge_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge is not a number")
+        expect(@item.errors.full_messages).to include("Delivery charge must be other than 1")
       end
       it 'shipping_areaが「---」では登録できない' do
-        @item.shipping_area_id = '---'
+        @item.shipping_area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping area is not a number")
+        expect(@item.errors.full_messages).to include("Shipping area must be other than 1")
       end
       it 'days_to_shipが「---」では登録できない' do
-        @item.days_to_ship_id = '---'
+        @item.days_to_ship_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Days to ship is not a number")
+        expect(@item.errors.full_messages).to include("Days to ship must be other than 1")
       end
     end
   end

@@ -9,14 +9,19 @@ class Item < ApplicationRecord
   belongs_to :shipping_area
   belongs_to :days_to_ship
 
-  validates :name,        presence: true
-  validates :description, presence: true
-  validates :image,       presence: true
-  validates :price,       presence: true, format:{with:/\A^[0-9]*$\z/}, numericality:{greater_than: 300, less_than: 9999999}
-  validates :category_id,        presence: true, numericality: { other_than: 1 }
-  validates :delivery_charge_id, presence: true, numericality: { other_than: 1 }
-  validates :status_id,          presence: true, numericality: { other_than: 1 }
-  validates :shipping_area_id,   presence: true, numericality: { other_than: 1 }
-  validates :days_to_ship_id,    presence: true, numericality: { other_than: 1 }
+  validates :price, presence: true, format:{with:/\A^[0-9]*$\z/}, numericality:{greater_than: 300, less_than: 9999999}
 
+  with_options presence: true do
+    validates :name
+    validates :description
+    validates :image
+  end
+
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :delivery_charge_id
+    validates :status_id
+    validates :shipping_area_id
+    validates :days_to_ship_id
+  end
 end
