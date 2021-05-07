@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_area
   belongs_to :days_to_ship
 
-  validates :price, presence: true, format:{with:/\A^[0-9]*$\z/}, numericality:{greater_than: 300, less_than: 9999999}
+  validates :price, presence: true, format:{with:/\A^[0-9]*$\z/}, numericality:{greater_than: 299, less_than: 10000000}
 
   with_options presence: true do
     validates :name
