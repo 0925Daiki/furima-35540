@@ -9,7 +9,7 @@ class OrderAddress
     validates :shipping_area_id, numericality: { other_than: 1 }
     validates :municipality
     validates :city
-    validates :phone, length:{minimum: 1, maximum: 11 }
+    validates :phone, format:{with:/\A^[0-9]*$\z/}, length:{minimum: 1, maximum: 11 }
     validates :token
   end
 
