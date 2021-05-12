@@ -13,7 +13,7 @@
 
 ## アソシエーション
 has_many :items
-has_many :pays
+has_many :orders
 
 
 ## items table
@@ -32,10 +32,10 @@ has_many :pays
 
 ## アソシエーション
 belongs_to :user
-has_one :pay
+has_one :order
 
 
-## pays table
+## orders table
 
 | Column    | Type       | Options                        |
 |-----------|------------|--------------------------------|
@@ -47,16 +47,16 @@ belongs_to :user
 belongs_to :item
 has_one :send
 
-## sends table
+## addresses table
 
 | Column           | Type       | Options                        |
 |------------------|------------|--------------------------------|
 | postal_code      | string     | null: false                    |
 | shipping_area_id | integer    | null: false                    |
 | municipality     | string     | null: false                    |
-| address          | string     | null: false                    |
+| city             | string     | null: false                    |
 | building_name    | string     |                                |
 | phone            | string     | null: false                    |
-| pay              | references | null: false, foreign_key: true |
+| order            | references | null: false, foreign_key: true |
 
-belongs_to :pay
+belongs_to :order
