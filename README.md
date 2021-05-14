@@ -13,6 +13,7 @@
 
 ## アソシエーション
 has_many :items
+has_many :comments
 has_many :orders
 
 
@@ -31,16 +32,32 @@ has_many :orders
 | user               | references    | null: false, foreign_key: true |
 
 ## アソシエーション
+has_many :comments
 belongs_to :user
 has_one :order
 
+## comments table
+| Column | Type       | Options           |
+|--------|------------|-------------------|
+| text   | text       |                   |
+| user   | references | foreign_key: true |
+| item   | references | foreign_key: true |
+
+## アソシエーション
+belongs_to :user
+belongs_to :item
 
 ## orders table
 
 | Column    | Type       | Options                        |
 |-----------|------------|--------------------------------|
 | user      | references | null: false, foreign_key: true |
-| item      | references | null: false, foreign_key: true |
+| item      | references | null: false, | Column           | Type       | Options                        |
+|------------------|------------|--------------------------------|
+| postal_code      | string     | null: false                    |
+| shipping_area_id | integer    | null: false                    |
+| municipality     | string     | null: false                    |
+| city             | string     | null: false                    | |
 
 ## アソシエーション
 belongs_to :user
